@@ -1,4 +1,4 @@
-package i5.las2peer.services.res;
+package i5.las2peer.services.mensa;
 
 
 import java.net.HttpURLConnection;
@@ -45,15 +45,15 @@ import java.util.Map;
  * outsourced to (imported) classes.
  *
  */
-@ServicePath("res")
+@ServicePath("mensa")
 @ManualDeployment
-public class Res extends RESTService {
+public class Mensa extends RESTService {
 
 
 
 
 
-  public Res() {
+  public Mensa() {
 	super();
     // read and set properties values
     setFieldValues();
@@ -80,28 +80,27 @@ public class Res extends RESTService {
   @Path("/")
   public static class RootResource {
 
-    private final Res service = (Res) Context.getCurrent().getService();
+    private final Mensa service = (Mensa) Context.getCurrent().getService();
 
       /**
    * 
-   * gettest
+   * getDishRatings
    *
    * 
-   * @param payload  a JSONObject
+   * @param id  a String
    * 
    * @return Response 
    * 
    */
-  @POST
-  @Path("/test")
+  @GET
+  @Path("/dishes/{id}/ratings")
   @Produces(MediaType.APPLICATION_JSON)
-  @Consumes(MediaType.APPLICATION_JSON)
+  @Consumes(MediaType.TEXT_PLAIN)
   @ApiResponses(value = {
        @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "res")
   })
-  @ApiOperation(value = "gettest", notes = " ")
-  public Response gettest(String payload) {
-    JSONObject payload_JSON = (JSONObject) JSONValue.parse(payload);
+  @ApiOperation(value = "getDishRatings", notes = " ")
+  public Response getDishRatings(@PathParam("id") String id) {
 
 
 
@@ -117,7 +116,7 @@ public class Res extends RESTService {
     // res
     boolean res_condition = true;
     if(res_condition) {
-      JSONObject res = new classes().new User().toJSON();
+      JSONObject res = new JSONObject();
 
       
 
