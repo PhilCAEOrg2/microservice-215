@@ -88,6 +88,8 @@ public class Mensa extends RESTService {
    *
    * 
    * @param id  a String
+   * @param body  a JSONObject
+
    * 
    * @return Response 
    * 
@@ -95,13 +97,14 @@ public class Mensa extends RESTService {
   @GET
   @Path("/dishes/{id}/ratings")
   @Produces(MediaType.APPLICATION_JSON)
-  @Consumes(MediaType.TEXT_PLAIN)
+  @Consumes(MediaType.APPLICATION_JSON)
   @ApiResponses(value = {
        @ApiResponse(code = HttpURLConnection.HTTP_NOT_FOUND, message = "notfound"),
        @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "res")
   })
   @ApiOperation(value = "getDishRatings", notes = " ")
-  public Response getDishRatings(@PathParam("id") String id) {
+  public Response getDishRatings(@PathParam("id") String id, String body) {
+    JSONObject body_JSON = (JSONObject) JSONValue.parse(body);
 
 
 
