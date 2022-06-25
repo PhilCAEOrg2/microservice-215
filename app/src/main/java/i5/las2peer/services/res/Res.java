@@ -116,7 +116,7 @@ public class Res extends RESTService {
     // res
     boolean res_condition = true;
     if(res_condition) {
-      JSONObject res = new JSONObject();
+      JSONObject res = new classes().new User().toJSON();
 
       
 
